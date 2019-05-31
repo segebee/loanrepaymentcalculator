@@ -1,0 +1,70 @@
+#calculate_block {
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background-color: rgba(255,255,255,0);
+    border-color: #3e467b;
+    border-width: 20px;
+    border-style: solid;
+	}
+
+	#calculate_block .featured_block_inner {
+	    width: 100%;
+	    padding: 50px 40px 50px 40px;
+	    text-align: left;
+	    margin: 0 auto;
+	    background-color: #ffffff;
+	}
+
+	.calculate_block_input {
+		width: 100%;
+		display: block
+	}
+
+	.calculate_block_button {
+		text-align: center;
+		margin-bottom: 10px
+	}
+
+	.input_block,.featured_block_text {
+		margin-bottom: 15px
+	}
+
+	#calculate_button {
+		background: #3e467b;
+		color: #fff
+	}
+
+	#repayments_block {
+		display: none
+	}
+
+	#repayments_block__title {
+		padding-bottom: 10px;
+		border-bottom: 1px solid #3e467b;
+		font-weight: 700
+	}
+
+	#repayments_list {
+		list-style-type: none;
+		margin: 0;
+		padding: 0;
+	}
+	#repayments_list li {
+		margin-bottom: 10px;
+	}
+	#repayments_list li br {
+		display: none;
+	}
+	#repayments_list li:before {
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		content: ''
+	}
+	.repayments_list__title {
+		font-weight: 700
+	}
+	.repayments_list__text {
+		margin-left: 30px;
+	}
