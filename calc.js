@@ -20,12 +20,14 @@ function calculate() {
     principal = amount/tenure;
 
     firstRepayment = (interest*amount)/100 + principal;
+    firstRepayment = Math.round(firstRepayment * 100)/100
     arr.push({'1':firstRepayment});
 
     if(tenure > 1) {
 	    for (i = 1; i < tenure;i++) {
 	        currentValue = (interest * (amount-(parseInt(Object.keys(arr[i-1]))*principal))/100)+principal;
-	        arr.push({[i+1]:currentValue});
+	        currentValue = Math.round(currentValue * 100)/100
+            arr.push({[i+1]:currentValue});
 	    }
 	  }
 
