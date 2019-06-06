@@ -1,25 +1,8 @@
 let interest, amount, principal, currentValue, prevValue,i;
 let arr = [];
 let obj = {};
-
-
-function calculate() {
-    // This clears what is rendered on the screen on every input update
-    arr = [];
-    // e.preventDefault();
-    var interestVal = document.getElementById("interest").value;
-    obj.interest = interestVal;
-    var amountVal = document.getElementById("amount").value;
-    obj.amount = amountVal;
-    var tenureVal = document.getElementById("tenure").value;
-    obj.tenure = tenureVal;
-
-    amount = parseInt(obj.amount);
-    interest = parseInt(obj.interest);
-    tenure = parseInt(obj.tenure);
-    principal = amount/tenure;
-
-    firstRepayment = (interest*amount)/100 + principal;
+function Reducing(amount, interest, tenure, principal) {
+  firstRepayment = (interest*amount)/100 + principal;
     firstRepayment = Math.round(firstRepayment * 100)/100
     arr.push({'1':firstRepayment});
 
@@ -38,10 +21,37 @@ function calculate() {
         	<span class="repayments_list__text"> &#x20a6; ${val[key]}</span></li>`: '';
       })
     ))
+    return repayments;
+}
+function Flatrate(principal, interest, tenure ) {
+  var monthlyRepayment = ((principal/tenure) + (5*interest/100)) +` per month for ${tenure} month(s)` ;
+  monthlyRepayment = Math.round(currentValue * 100)/100;
+  return monthlyRepayment;
+}
+
+function calculate() {
+    // This clears what is rendered on the screen on every input update
+    arr = [];
+    // e.preventDefault();
+    var interest_type = document.getElementById("interest_method").value;
+    
+    var interestVal = document.getElementById("interest").value;
+    obj.interest = interestVal;
+    var amountVal = document.getElementById("amount").value;
+    obj.amount = amountVal;
+    var tenureVal = document.getElementById("tenure").value;
+    obj.tenure = tenureVal;
+
+    amount = parseInt(obj.amount);
+    interest = parseInt(obj.interest);
+    tenure = parseInt(obj.tenure);
+    principal = amount/tenure;
+    let calculated_val = interest_type === "Reducing" ? Reducing(amount, interest, tenure, principal): Flatrate(amount, interest, tenure);
+    
 
     // console.log(repayments)
     const repayments_block = "#repayments_block"
     const repayments_list = "#repayments_list"
-    jQuery(repayments_list).html(repayments);
+    jQuery(repayments_list).html(calculated_val);
     return jQuery(repayments_block).slideDown();
 }
