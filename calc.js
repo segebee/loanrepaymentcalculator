@@ -3,7 +3,7 @@ let arr = [];
 let obj = {};
 function Reducing(amount, interest, tenure, principal) {
   firstRepayment = (interest*amount)/100 + principal;
-    firstRepayment = Math.round(firstRepayment * 100)/100
+    firstRepayment =         Math.round(firstRepayment * 100)/100
     arr.push({'1':firstRepayment});
 
     if(tenure > 1) {
@@ -24,9 +24,20 @@ function Reducing(amount, interest, tenure, principal) {
     return repayments;
 }
 function Flatrate(principal, interest, tenure ) {
-  var monthlyRepayment = ((principal/tenure) + (5*interest/100)) +` per month for ${tenure} month(s)` ;
-  monthlyRepayment = Math.round(currentValue * 100)/100;
-  return monthlyRepayment;
+  var monthlyRepayment = ((principal/tenure) + (5*interest/100));
+  // monthlyRepayment = Math.round(monthlyRepayment * 100)/100;
+  // monthlyRepayment += ` per month for ${tenure} month(s)`;
+  for(i = 1;i <= tenure;i++) {
+    arr.push({[i]:monthlyRepayment});
+  }
+  let repayments = "";
+  arr.map((val, i)=>(
+   Object.keys(val).map(function(key) {
+     repayments += val[key] != NaN? `<li><span class="repayments_list__title"> Month ${key} </span>
+       <span class="repayments_list__text"> &#x20a6; ${val[key]}</span></li>`: '';
+   })
+ ))
+ return repayments;
 }
 
 function calculate() {
@@ -46,7 +57,7 @@ function calculate() {
     interest = parseInt(obj.interest);
     tenure = parseInt(obj.tenure);
     principal = amount/tenure;
-    let calculated_val = interest_type === "Reducing" ? Reducing(amount, interest, tenure, principal): Flatrate(amount, interest, tenure);
+    let calculated_val = interest_type === "Reducing" ? Reducing(amount, interest, tenure, principal): Flatrate(amount, interest, tenure,principal);
     
 
     // console.log(repayments)
