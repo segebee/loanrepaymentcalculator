@@ -23,8 +23,8 @@ function Reducing(amount, interest, tenure, principal) {
     ))
     return repayments;
 }
-function Flatrate(principal, interest, tenure ) {
-  var monthlyRepayment = ((principal/tenure) + (5*interest/100));
+function Flatrate(amount, interest, tenure, principal ) {
+  var monthlyRepayment = principal + (amount*(interest/100));
   // monthlyRepayment = Math.round(monthlyRepayment * 100)/100;
   // monthlyRepayment += ` per month for ${tenure} month(s)`;
   for(i = 1;i <= tenure;i++) {
