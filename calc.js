@@ -2,13 +2,16 @@ let interest, amount, principal, currentValue, prevValue,i;
 let arr = [];
 let obj = {};
 function Reducing(amount, interest, tenure, principal) {
-  firstRepayment = (interest*amount)/100 + principal;
-    firstRepayment =         Math.round(firstRepayment * 100)/100
+  console.log(`amount: ${(amount).toFixed(2)}, interest:${interest.toFixed(2)}, tenure: ${tenure.toFixed(2)}, principal: ${principal.toFixed(2)}`)
+  firstRepayment = ((interest*amount).toFixed(2) /100) + principal;
+  // console.log(firstRepayment);
     arr.push({'1':firstRepayment});
 
     if(tenure > 1) {
 	    for (i = 1; i < tenure;i++) {
-	        currentValue = (interest * (amount-(parseInt(Object.keys(arr[i-1]))*principal))/100)+principal;
+        console.log(Object.keys(arr[0]))
+	        currentValue = (interest * (amount-(parseInt(Object.keys(arr[i-1]))*principal))/100) +principal;
+          // console.log(currentValue);
 	        currentValue = Math.round(currentValue * 100)/100
             arr.push({[i+1]:currentValue});
 	    }
@@ -53,9 +56,9 @@ function calculate() {
     var tenureVal = document.getElementById("tenure").value;
     obj.tenure = tenureVal;
 
-    amount = parseInt(obj.amount);
-    interest = parseInt(obj.interest);
-    tenure = parseInt(obj.tenure);
+    amount = parseFloat(obj.amount);
+    interest = parseFloat(obj.interest);
+    tenure = parseFloat(obj.tenure);
     principal = amount/tenure;
     let calculated_val = interest_type === "Reducing" ? Reducing(amount, interest, tenure, principal): Flatrate(amount, interest, tenure,principal);
     
